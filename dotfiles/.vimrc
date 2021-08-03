@@ -1,113 +1,153 @@
 set nocompatible              " be iMproved, required
+" Compiling vim8
+" LDFLAGS=-L$HOME/usr/local/lib ./configure --prefix=$HOME/dev/vim8/vim --enable-gui=yes --with-features=huge --enable-python3interp --enable-pythoninterp
 filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
 " set the runtime path to include Vundle and initialize
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-" Plugin 'tpope/vim-fugitive'
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'preservim/nerdcommenter'
-Plugin 'preservim/nerdtree'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'joshdick/onedark.vim'
-Plugin 'frazrepo/vim-rainbow'
-Plugin 'ngemily/vim-vp4'
-Plugin 'sheerun/vim-wombat-scheme'
-Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/fzf'
-Plugin 'Yggdroot/indentLine'
-Plugin 'vhda/verilog_systemverilog.vim'
-Plugin 'ervandew/supertab'
-Plugin 'xolox/vim-session'
-Plugin 'xolox/vim-misc'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-scripts/sherlock.vim'
-Plugin 'mbbill/undotree'
-Plugin 'uguu-org/vim-matrix-screensaver'
-Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+Plug 'Yggdroot/indentLine'
+Plug 'davidhalter/jedi-vim'
+Plug 'ervandew/supertab'
+Plug 'frazrepo/vim-rainbow'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'mbbill/undotree'
+Plug 'mitchpaulus/autocorrect.vim'
+Plug 'morhetz/gruvbox'
+Plug 'ngemily/vim-vp4'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
+Plug 'puremourning/vimspector'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'uguu-org/vim-matrix-screensaver'
+Plug 'vhda/verilog_systemverilog.vim'
+Plug 'vim-latex/vim-latex'
+Plug 'vimwiki/vimwiki'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'preservim/tagbar'
+Plug 'dense-analysis/ale'
 
-
-call vundle#end()            " required
+call plug#end()
 filetype plugin indent on    " required
 let mapleader=','
 filetype plugin on
 
 " --------------------- END VUNDLE -----------------
 
-set foldexpr=AtomStyleFolding(v:lnum)
-set foldmethod=manual
+" set autochdir
 " set foldenable
-set visualbell
-set mouse=a
-set nowritebackup
-set nobackup
-set showcmd
-set splitright
-set splitbelow
-set noerrorbells
-set wildmenu
-set smartcase
-set ignorecase
-set undofile
-set undodir=~/.vim/undo_dir
-set sessionoptions-=options
-set laststatus=2 " For lightline
-set guioptions-=L
-set smarttab
+set autoread 
+set backspace=indent,eol,start
 set conceallevel=1
 set expandtab
-set softtabstop=4
-set shiftwidth=4
-" set autochdir
+set foldexpr=AtomStyleFolding(v:lnum)
+set foldmethod=manual
+set guioptions-=L
+set ignorecase
 set keymodel+=startsel
 set keymodel+=stopsel 
+set laststatus=2 " For lightline
+set mouse=a
+set nobackup
+set noerrorbells
+set noswapfile
+set nobackup
 set number
+set relativenumber
+set path+=**
+set pythonthreedll=/usr/lib64/libpython3.6m.so.1.0
+set sessionoptions-=options
+set shiftwidth=4
+set showcmd
+set smartcase
+set smarttab
+set incsearch
+set scrolloff=8
+set softtabstop=4 tabstop=4
+set spellfile=~/.vim/spell/en.utf-8.add
+set splitbelow
+set splitright
 set tags=tags,.tags;
-set autoread 
-
+set timeoutlen=300
+set undodir=~/.vim/undo_dir
+set undofile
+set visualbell
+set wildmenu
 syntax enable
-
-colorscheme wombat
+let g:gruvbox_guisp_fallback = "fg"
+let g:gruvbox_improved_warnings = '0'
+set background=dark
+colorscheme gruvbox
+set hlsearch
+set hidden
 
 " --------------- END SET CMDs ------------------------
+nnoremap <Leader>hls :set hlsearch! hlsearch?<cr>
 " nnoremap Path :let @+ = expand("%:p")<cr>
-nnoremap <Leader>t :tabnew<cr>
-nnoremap <Leader>q :q<cr>
-nnoremap <Leader>s :w<cr>
-vnoremap <Leader>y "+y
-vnoremap <Leader>p "+p
-nnoremap <silent> <C-l> :wincmd l<CR>
-nnoremap <silent> <C-h> :wincmd h<CR>
-nnoremap <silent> <C-j> :wincmd j<CR>
-nnoremap <silent> <C-k> :wincmd k<CR>
-nnoremap <Leader><Leader> <C-^>
-nnoremap <silent><S-F12> :call Switch_synhl()<CR>
-nnoremap <A-a> <C-a>
-nnoremap <A-x> <C-x>
-noremap <C-a> ^
-noremap <C-s> $
-nnoremap <space> :set hlsearch! hlsearch?<cr>
 inoremap qq <Esc>
+nnoremap <C-F> :let $FZF_DEFAULT_COMMAND='ag --hidden --path-to-ignore ~/dev/resources/.ignore --nocolor -g ""'<cr>:Files<cr>
+nnoremap <Leader><Leader> <C-^>
+nnoremap <Leader>h :History<cr>
+nnoremap <Leader>q :q<cr>
+nnoremap <Leader>t :tabnew<cr>
+nnoremap <Leader>w :w<cr>
+" nnoremap <silent> <C-h> <C-w><Left>
+" nnoremap <silent> <C-j> <C-w><Down>
+" nnoremap <silent> <C-k> <C-w><Up>
+" nnoremap <silent> <C-l> <C-w><Right>
+nnoremap <silent> <Leader>f :let $FZF_DEFAULT_COMMAND=""<cr>:Ag<cr>
+nnoremap <silent> <Leader>l :Lines<CR>
+nnoremap <silent><F12> :syntax on<CR> :set relativenumber<CR>
+nnoremap <silent><F9> :syntax off<CR> :set norelativenumber<CR>
+nnoremap <space> za
+nnoremap tu :UndotreeToggle<cr>
+nnoremap <C-s> $
+vnoremap <Leader>p "+p
+vnoremap <Leader>y "+y
+vnoremap <silent> <Leader>f y:Ag <C-r>"<CR>
+vnoremap <silent> <Leader>g y/<C-r>"<CR>
+vnoremap <silent> <Leader>r y:%s@<C-r>"@
+vnoremap <space> zf
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 command! -bang FoldInc setlocal foldmethod=marker | setlocal foldmarker=include_hdl_start,include_hdl_stop | setlocal foldlevel=0 | setlocal foldmethod=manual
 command! -bang Lrc :source ~/.vimrc " load vimrc with one command
 command! -bang Path :let @+ = expand("%:p")
 command! -bang FoldV setlocal foldmethod=syntax | setlocal foldlevel=0 | setlocal foldmethod=manual
-
-nnoremap <Leader>h :History<cr>
-nnoremap tu :UndotreeToggle<cr>
-nnoremap <C-F> :let $FZF_DEFAULT_COMMAND='ag --hidden --path-to-ignore ~/dev/resources/.ignore --nocolor -g ""'<cr>:Files<cr>
-nnoremap <silent> <Leader>f :let $FZF_DEFAULT_COMMAND=""<cr>:Ag<cr>
-nnoremap <silent> <Leader>g :Lines<CR>
-vnoremap <silent> <Leader>f y:Ag <C-r>"<CR>
-vnoremap <silent> <Leader>g y/<C-r>"<CR>
-vnoremap <silent> <Leader>r y:%s@<C-r>"@
-
-
+command! -bang FoldPy setlocal foldmethod=indent | setlocal foldnestmax=1 | setlocal foldlevel=0 | setlocal foldmethod=manual
 " ----------------------- END MAPPINGS ---------------
 
+
+function! GitBranch()
+    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  endfunction
+
+set fillchars=stl:―,stlnc:—,vert:│,fold:۰,diff:·
+
+highlight vertsplit    cterm=none ctermbg=none ctermfg=9
+highlight statusline   cterm=none ctermbg=none ctermfg=14
+highlight statuslinenc cterm=none ctermbg=none ctermfg=9
+highlight specialkey   cterm=none ctermbg=none ctermfg=1
+highlight matchparen   cterm=none ctermbg=none ctermfg=5
+highlight wildmenu     cterm=bold ctermbg=none ctermfg=3
+highlight user1        cterm=none ctermbg=none ctermfg=3
+
+set statusline=
+set statusline+=%1*%f%*
+set statusline+=%(\ [%{fugitive#head()}%Y%R%W%M]%)
+set statusline+=%=
+set statusline+=[%(%l,%c%V%)]
+set statusline+=\ %1*%P%*
+
+
+" ----------------------- END STATUSLINE ---------------
 
 nnoremap tt :NERDTreeToggle<cr>
 nnoremap tf :NERDTreeFind<cr>
@@ -117,6 +157,106 @@ let g:NERDTreeChDirMode = 2 " Does cd whenever nerdtree root is also changed
 
 
 " ----------------------- END NERDTREE ---------------
+let g:ale_linters = {
+      \   'python': ['pylint'],
+      \}
+
+" ----------------------- END ALE ---------------
+
+let g:tagbar_ctags_bin = '/runs/simrun_tav/libs/bin/ctags'
+
+nnoremap <F8> :TagbarToggle<CR>
+
+
+let g:tagbar_type_verilog = {
+    \ 'kinds' : [
+        \ 'c:constants:0:0',
+        \ 'e:events',
+        \ 'f:functions',
+        \ 'm:modules',
+        \ 'b:blocks',
+        \ 'n:net data types',
+        \ 'p:ports',
+        \ 't:tasks',
+    \ ],
+\ }
+
+let g:tagbar_type_systemverilog = {
+    \ 'ctagstype': 'systemverilog',
+    \ 'kinds' : [
+         \'A:assertions',
+         \'C:classes',
+         \'E:enumerators',
+         \'I:interfaces',
+         \'K:packages',
+         \'M:modports',
+         \'P:programs',
+         \'Q:prototypes',
+         \'R:properties',
+         \'S:structs and unions',
+         \'T:type declarations',
+         \'V:covergroups',
+         \'b:blocks:0:0',
+         \'c:constants',
+         \'e:events',
+         \'f:functions',
+         \'m:modules:1:0',
+         \'n:net data types',
+         \'p:ports',
+         \'t:tasks',
+     \],
+     \ 'sro': '.',
+     \ 'kind2scope' : {
+        \ 'K' : 'package',
+        \ 'C' : 'class',
+        \ 'm' : 'module',
+        \ 'P' : 'program',
+        \ 'I' : 'interface',
+        \ 'M' : 'modport',
+        \ 'f' : 'function',
+        \ 't' : 'task',
+        \ 'b' : 'blocks',
+     \},
+     \ 'scope2kind' : {
+        \ 'package'   : 'K',
+        \ 'class'     : 'C',
+        \ 'module'    : 'm',
+        \ 'program'   : 'P',
+        \ 'interface' : 'I',
+        \ 'modport'   : 'M',
+        \ 'function'  : 'f',
+        \ 'task'      : 't',
+        \ 'blocks'    : 'b',
+     \ },
+     \}
+
+
+" let g:tagbar_type_python = {
+    " \ 'ctagsargs' : ' -f - --format=2 --excmd=pattern --extras= --fields=nksaSmt --kinds-python=+l ',
+    " \ 'kinds' : [
+        " \ 'i:modules:1:0',
+        " \ 'c:classes',
+        " \ 'f:functions',
+        " \ 'm:members',
+        " \ 'v:variables:0:0',
+        " \ 'l:local:0:0',
+        " \ '?:unknown',
+    " \ ],
+" \ }
+
+" ----------------------- END TAGBAR ---------------
+
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>a"
+let g:jedi#goto_stubs_command = "<leader>s"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#show_call_signatures=2
+let g:jedi#popup_on_dot = 0
+" ----------------------- END JEDI ---------------
 
 let g:SuperTabDefaultCompletionType = 'context'
 let g:session_autoload = 'no'
@@ -126,29 +266,51 @@ let g:indentLine_color_term = 239
 let g:indentLine_setColors = 239
 let g:indentLine_char = '|'
 let g:rainbow_active = 1 " Rainbow brakets
-let g:vim_markdown_folding_disabled = 1
 " ----------------------- END LETs ---------------
-let g:ctrlp_regexp = 1
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
-let g:ctrlp_cmd = 'CtrlPMRU'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_use_caching = 1
 
-" ----------------------- END CTRLP ---------------
+let g:AutocorrectFiletypes = ["text","markdown","tex"]
+let g:AutocorrectPersonalFile='~/dev/usr/$USER/.autocorrect'
+
+let g:vimwiki_list = [{'path': '~/dev/usr/$USER/wiki/vimwiki/'}]
+let g:vimwiki_table_mappings = 0
+" ----------------------- END TEXT STUFF---------------
 let g:verilog_disable_indent_lst= "all"
-let g:verilog_syntax_fold_lst = "function,task"
+let g:verilog_syntax_fold_lst = "class,function,task,module"
 
 " ----------------------- END VERILOG ---------------
 
-autocmd BufReadPre,BufEnter * if getfsize(@%) > 1000000 | syntax off | endif
-" autocmd BufReadPre,BufEnter * if getfsize(@%) < 1000000 | syntax on | endif
-" autocmd BufEnter * let &colorcolumn=""
-autocmd InsertLeave,WinEnter,TabEnter * let &l:foldmethod=g:oldfoldmethod
-autocmd InsertEnter,WinLeave,TabLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
-autocmd BufEnter,TabEnter,WinEnter * IndentLinesReset
-autocmd BufNewFile,BufRead *.md set foldmethod=expr | set filetype=markdown
+nmap <leader>dc  <Plug>VimspectorContinue
+" nmap <leader> <Plug>VimspectorStop
+" nmap <leader> <Plug>VimpectorRestart
+" nmap <leader> <Plug>VimspectorPause
+nmap <leader>db <Plug>VimspectorToggleBreakpoint
+" nmap <leader> <Plug>VimspectorToggleConditionalBreakpoint
+" nmap <leader> <Plug>VimspectorAddFunctionBreakpoint
+nmap <leader>drc <Plug>VimspectorRunToCursor
+nmap <leader>dso <Plug>VimspectorStepOver
+nmap <leader>dsi <Plug>VimspectorStepInto
+nmap <leader>dst <Plug>VimspectorStepOut
+" nmap <leader> <Plug>VimspectorUpFrame
+" nmap <leader> <Plug>VimspectorDownFrame
+
+" ----------------------- END VIMSPECTOR ---------------
+augroup pbharati
+  autocmd!
+  autocmd BufReadPre,BufEnter * if getfsize(@%) > 1000000 | syntax off | set norelativenumber | endif
+  autocmd BufReadPre,BufEnter * if getfsize(@%) < 1000000 | syntax on | endif
+  autocmd BufEnter * let &colorcolumn=""
+  autocmd InsertLeave,WinEnter,TabEnter * let &l:foldmethod=g:oldfoldmethod
+  autocmd InsertEnter,WinLeave,TabLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
+  autocmd BufEnter,TabEnter,WinEnter * IndentLinesReset
+  autocmd BufNewFile,BufRead *.md set foldmethod=expr | set filetype=markdown
+  autocmd BufWritePost *.tex :silent :!/home/pbharati/dev/usr/pbharati/ds_schism/paper/make_tex.sh
+  autocmd BufEnter *.tex set spell
+  autocmd BufEnter *.wiki set spell
+  autocmd BufLeave *.tex set nospell
+  autocmd BufLeave *.wiki set nospell
+augroup exit
+
+
 " ----------------------- END AUTOCMDs ---------------
 function! ToggleGUICruft()
   if &guioptions=='i'
@@ -196,15 +358,6 @@ function! AtomStyleFolding(line_number)
         return indent
     endif
 endfunction
-
-function! Switch_synhl()
-    if &syntax == "on"
-        set syntax=off
-    else
-        set syntax=on
-    endif
-endfunction
-
 
 function! Trim(input_string)
     return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')
