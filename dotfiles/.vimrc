@@ -26,7 +26,8 @@ Plug 'vim-latex/vim-latex'
 Plug 'vimwiki/vimwiki'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'preservim/tagbar'
-Plug 'dense-analysis/ale'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
 
 call plug#end()
 filetype plugin indent on    " required
@@ -297,7 +298,7 @@ nmap <leader>dst <Plug>VimspectorStepOut
 augroup pbharati
   autocmd!
   autocmd BufReadPre,BufEnter * if getfsize(@%) > 1000000 | syntax off | set norelativenumber | endif
-  autocmd BufReadPre,BufEnter * if getfsize(@%) < 1000000 | syntax on | endif
+  " autocmd BufReadPre,BufEnter * if getfsize(@%) < 1000000 | syntax on | endif
   autocmd BufEnter * let &colorcolumn=""
   autocmd InsertLeave,WinEnter,TabEnter * let &l:foldmethod=g:oldfoldmethod
   autocmd InsertEnter,WinLeave,TabLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
