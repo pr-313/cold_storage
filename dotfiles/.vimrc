@@ -20,7 +20,6 @@ Plug 'preservim/nerdtree'
 Plug 'puremourning/vimspector'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'uguu-org/vim-matrix-screensaver'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'vim-latex/vim-latex'
 Plug 'vimwiki/vimwiki'
@@ -33,7 +32,7 @@ call plug#end()
 filetype plugin indent on    " required
 let mapleader=','
 filetype plugin on
-
+runtime macros/matchit.vim
 " --------------------- END VUNDLE -----------------
 
 " set autochdir
@@ -98,7 +97,7 @@ nnoremap <Leader>w :w<cr>
 " nnoremap <silent> <C-k> <C-w><Up>
 " nnoremap <silent> <C-l> <C-w><Right>
 nnoremap <silent> <Leader>f :let $FZF_DEFAULT_COMMAND=""<cr>:Ag<cr>
-nnoremap <silent> <Leader>l :Lines<CR>
+nnoremap <silent> <Leader>l :BLines<CR>
 nnoremap <silent><F12> :syntax on<CR> :set relativenumber<CR>
 nnoremap <silent><F9> :syntax off<CR> :set norelativenumber<CR>
 nnoremap <space> za
@@ -107,7 +106,7 @@ nnoremap <C-s> $
 vnoremap <Leader>p "+p
 vnoremap <Leader>y "+y
 vnoremap <silent> <Leader>f y:Ag <C-r>"<CR>
-vnoremap <silent> <Leader>g y/<C-r>"<CR>
+vnoremap <silent> <Leader>g y:BLines <C-r>"<CR>
 vnoremap <silent> <Leader>r y:%s@<C-r>"@
 vnoremap <space> zf
 vnoremap J :m '>+1<CR>gv=gv
@@ -117,6 +116,11 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
 
 command! -bang FoldInc setlocal foldmethod=marker | setlocal foldmarker=include_hdl_start,include_hdl_stop | setlocal foldlevel=0 | setlocal foldmethod=manual
 command! -bang Lrc :source ~/.vimrc " load vimrc with one command
@@ -278,6 +282,19 @@ let g:vimwiki_table_mappings = 0
 let g:verilog_disable_indent_lst= "all"
 let g:verilog_syntax_fold_lst = "class,function,task,module"
 
+if exists("loaded_matchit")
+      let b:match_ignorecase=0
+        let b:match_words=
+            \ '\<begin\>:\<end\>,' .
+            \ '\<randcase\>\|\<case\>\|\<casex\>\|\<casez\>:\<endcase\>,' .
+            \ '\<module\>:\<endmodule\>,' .
+            \ '\<function\>:\<endfunction\>,' .
+            \ '\(`ifdef\|`ifndef\)\>:`else\>:`endif\>,' .
+            \ '\<task\>:\<endtask\>,' .
+            \ '\<specify\>:\<endspecify\>'
+    endif
+                " \ '\<if\>:\<else\>,' .
+
 " ----------------------- END VERILOG ---------------
 
 nmap <leader>dc  <Plug>VimspectorContinue
@@ -297,7 +314,7 @@ nmap <leader>dst <Plug>VimspectorStepOut
 " ----------------------- END VIMSPECTOR ---------------
 augroup pbharati
   autocmd!
-  autocmd BufReadPre,BufEnter * if getfsize(@%) > 1000000 | syntax off | set norelativenumber | endif
+  autocmd BufReadPre,BufEnter * if getfsize(@%) > 1000000 | setlocal syntax="" | setlocal norelativenumber | endif
   " autocmd BufReadPre,BufEnter * if getfsize(@%) < 1000000 | syntax on | endif
   autocmd BufEnter * let &colorcolumn=""
   autocmd InsertLeave,WinEnter,TabEnter * let &l:foldmethod=g:oldfoldmethod

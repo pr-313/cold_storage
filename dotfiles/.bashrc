@@ -31,19 +31,20 @@ alias br="buildreport -rnl"
 alias cmdline_long="export PS1='\[\033[0;35m\][\!:\h \[\033[0;33m\]\w]\[\033[00m\]: '"
 alias cmdline_short="export PS1='\[\033[0;35m\][\!:\h \[\033[0;33m\]\W]\[\033[00m\]: '"
 alias ctags="/runs/simrun_tav/libs/bin/ctags"
-alias dgs='vim -c :Matrix'
+alias curr_cl="p4 changes -m1 ./...#have"
 alias fugitive="vim -c :Git"
 alias glog="git log --graph --decorate --oneline --simplify-by-decoration"
 alias glog_full="git log --graph --decorate --oneline"
 alias lsof=/usr/sbin/lsof
+alias reset_term="env -i HOME="$HOME" bash -l && source ~/.bashrc"
 alias nvim="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/nvim"
 alias run_djinji="/runs/simrun_tav/tav_dev/jira_djinji/djinji/run_djinji.sh"
-alias tmux="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/tmux"
+alias tmux="TMPDIR=~/.tmux/ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/tmux"
 alias vim="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/vim"
 export EDITOR="$VISUAL"
 export LD_LIBRARY_PATH="/eda/xcelium/19.09.006/tools/lib:/eda/vmanager/VMANAGER2009/tools/lib/"
 export P4EDITOR=vim
-export PATH=/runs/simrun_tav/libs/bin/:$PATH:$HOME/.local/bin/:$HOME/dev/bin/
+export PATH=$PATH:$HOME/.local/bin/:$HOME/dev/bin/
 export TERM=xterm-256color
 export VISUAL=vim
 
