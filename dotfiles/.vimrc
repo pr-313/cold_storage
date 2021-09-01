@@ -8,12 +8,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'Yggdroot/indentLine'
 Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
-Plug 'frazrepo/vim-rainbow'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'mitchpaulus/autocorrect.vim'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'ngemily/vim-vp4'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
@@ -27,6 +26,9 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'preservim/tagbar'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-scripts/LargeFile'
+
 
 call plug#end()
 filetype plugin indent on    " required
@@ -70,47 +72,50 @@ set splitbelow
 set splitright
 set tags=tags,.tags;
 set timeoutlen=300
-set undodir=~/.vim/undo_dir
+set undodir=~/undo_dir
 set undofile
 set visualbell
 set wildmenu
 syntax enable
-let g:gruvbox_guisp_fallback = "fg"
+let g:gruvbox_italic=1
+let g:gruvbox_guisp_fallback = "bg"
+let g:gruvbox_contrast_dark='high'
 let g:gruvbox_improved_warnings = '0'
+let g:LargeFile=10
 set background=dark
 colorscheme gruvbox
 set hlsearch
 set hidden
 
 " --------------- END SET CMDs ------------------------
-nnoremap <Leader>hls :set hlsearch! hlsearch?<cr>
+nnoremap <Leader>H :set hlsearch! hlsearch?<cr>
 " nnoremap Path :let @+ = expand("%:p")<cr>
-inoremap qq <Esc>
-nnoremap <C-F> :let $FZF_DEFAULT_COMMAND='ag --hidden --path-to-ignore ~/dev/resources/.ignore --nocolor -g ""'<cr>:Files<cr>
-nnoremap <Leader><Leader> <C-^>
-nnoremap <Leader>h :History<cr>
-nnoremap <Leader>q :q<cr>
-nnoremap <Leader>t :tabnew<cr>
-nnoremap <Leader>w :w<cr>
+inoremap <silent> qq <Esc>
+nnoremap <silent> <C-F> :let $FZF_DEFAULT_COMMAND='ag --hidden --path-to-ignore ~/dev/resources/.ignore --nocolor -g ""'<cr>:Files<cr>
+nnoremap <silent> <Leader><Leader> <C-^>
+nnoremap <silent> <Leader>q :q<cr>
+noremap <silent> <Leader>t :tabnew<cr>
+nnoremap <silent> <Leader>w :w<cr>
 " nnoremap <silent> <C-h> <C-w><Left>
 " nnoremap <silent> <C-j> <C-w><Down>
 " nnoremap <silent> <C-k> <C-w><Up>
 " nnoremap <silent> <C-l> <C-w><Right>
 nnoremap <silent> <Leader>f :let $FZF_DEFAULT_COMMAND=""<cr>:Ag<cr>
 nnoremap <silent> <Leader>l :BLines<CR>
-nnoremap <silent><F12> :syntax on<CR> :set relativenumber<CR>
-nnoremap <silent><F9> :syntax off<CR> :set norelativenumber<CR>
-nnoremap <space> za
-nnoremap tu :UndotreeToggle<cr>
-nnoremap <C-s> $
-vnoremap <Leader>p "+p
-vnoremap <Leader>y "+y
+nnoremap <silent> <F12> :syntax on<CR> :set relativenumber<CR>
+nnoremap <silent> <F9> :syntax off<CR> :set norelativenumber<CR>
+nnoremap <silent> <space> za
+nnoremap <silent> tu :UndotreeToggle<cr>
+vnoremap <silent> <Leader>p "+p
+vnoremap <silent> <Leader>y "+y
 vnoremap <silent> <Leader>f y:Ag <C-r>"<CR>
-vnoremap <silent> <Leader>g y:BLines <C-r>"<CR>
-vnoremap <silent> <Leader>r y:%s@<C-r>"@
-vnoremap <space> zf
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+vnoremap <silent> <Leader>G y:BLines <C-r>"<CR>
+vnoremap <silent> <Leader>g y/<C-r>"<CR>
+nnoremap <silent> <Leader>h :History<cr>
+vnoremap <Leader>r y:%s@<C-r>"@
+vnoremap <silent> <space> zf
+vnoremap <silent> J :m '>+1<CR>gv=gv
+vnoremap <silent> K :m '<-2<CR>gv=gv
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
@@ -130,32 +135,32 @@ command! -bang FoldPy setlocal foldmethod=indent | setlocal foldnestmax=1 | setl
 " ----------------------- END MAPPINGS ---------------
 
 
-function! GitBranch()
-    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-  endfunction
+" function! GitBranch()
+    " return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  " endfunction
 
-set fillchars=stl:―,stlnc:—,vert:│,fold:۰,diff:·
+" set fillchars=stl:―,stlnc:—,vert:│,fold:۰,diff:·
 
-highlight vertsplit    cterm=none ctermbg=none ctermfg=9
-highlight statusline   cterm=none ctermbg=none ctermfg=14
-highlight statuslinenc cterm=none ctermbg=none ctermfg=9
-highlight specialkey   cterm=none ctermbg=none ctermfg=1
-highlight matchparen   cterm=none ctermbg=none ctermfg=5
-highlight wildmenu     cterm=bold ctermbg=none ctermfg=3
-highlight user1        cterm=none ctermbg=none ctermfg=3
+" highlight vertsplit    cterm=none ctermbg=none ctermfg=9
+" highlight statusline   cterm=none ctermbg=none ctermfg=14
+" highlight statuslinenc cterm=none ctermbg=none ctermfg=9
+" highlight specialkey   cterm=none ctermbg=none ctermfg=1
+" highlight matchparen   cterm=none ctermbg=none ctermfg=5
+" highlight wildmenu     cterm=bold ctermbg=none ctermfg=3
+" highlight user1        cterm=none ctermbg=none ctermfg=3
 
-set statusline=
-set statusline+=%1*%f%*
-set statusline+=%(\ [%{fugitive#head()}%Y%R%W%M]%)
-set statusline+=%=
-set statusline+=[%(%l,%c%V%)]
-set statusline+=\ %1*%P%*
+" set statusline=
+" set statusline+=%1*%f%*
+" set statusline+=%(\ [%{fugitive#head()}%Y%R%W%M]%)
+" set statusline+=%=
+" set statusline+=[%(%l,%c%V%)]
+" set statusline+=\ %1*%P%*
 
 
 " ----------------------- END STATUSLINE ---------------
 
-nnoremap tt :NERDTreeToggle<cr>
-nnoremap tf :NERDTreeFind<cr>
+nnoremap <silent> tt :NERDTreeToggle<cr>
+nnoremap <silent> tf :NERDTreeFind<cr>
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 let g:NERDSpaceDelims = 1
 let g:NERDTreeChDirMode = 2 " Does cd whenever nerdtree root is also changed
@@ -169,8 +174,9 @@ let g:ale_linters = {
 " ----------------------- END ALE ---------------
 
 let g:tagbar_ctags_bin = '/runs/simrun_tav/libs/bin/ctags'
+let g:tagbar_file_size_limit = 10000
 
-nnoremap <F8> :TagbarToggle<CR>
+nnoremap <silent> <F8> :TagbarToggle<CR>
 
 
 let g:tagbar_type_verilog = {
@@ -314,18 +320,18 @@ nmap <leader>dst <Plug>VimspectorStepOut
 " ----------------------- END VIMSPECTOR ---------------
 augroup pbharati
   autocmd!
-  autocmd BufReadPre,BufEnter * if getfsize(@%) > 1000000 | setlocal syntax="" | setlocal norelativenumber | endif
+  " autocmd BufReadPre,BufEnter * if getfsize(@%) > 100000 | setlocal syntax="" | setlocal norelativenumber | endif
   " autocmd BufReadPre,BufEnter * if getfsize(@%) < 1000000 | syntax on | endif
-  autocmd BufEnter * let &colorcolumn=""
+  " autocmd BufEnter * let &colorcolumn=""
   autocmd InsertLeave,WinEnter,TabEnter * let &l:foldmethod=g:oldfoldmethod
   autocmd InsertEnter,WinLeave,TabLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
-  autocmd BufEnter,TabEnter,WinEnter * IndentLinesReset
-  autocmd BufNewFile,BufRead *.md set foldmethod=expr | set filetype=markdown
+  " autocmd BufEnter,TabEnter,WinEnter * IndentLinesReset
+  autocmd BufNewFile,BufRead *.md setlocal foldmethod=expr | setlocal filetype=markdown
   autocmd BufWritePost *.tex :silent :!/home/pbharati/dev/usr/pbharati/ds_schism/paper/make_tex.sh
-  autocmd BufEnter *.tex set spell
-  autocmd BufEnter *.wiki set spell
-  autocmd BufLeave *.tex set nospell
-  autocmd BufLeave *.wiki set nospell
+  autocmd BufEnter *.tex setlocal spell
+  autocmd BufEnter *.wiki setlocal spell
+  autocmd BufLeave *.tex setlocal nospell
+  autocmd BufLeave *.wiki setlocal nospell
 augroup exit
 
 

@@ -25,6 +25,7 @@ find $1 -maxdepth $2 -user $USER -type d ! -path $1 -exec du -csh {} + | sort -h
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+export old_LD_LIB_PAT=$LD_LIBRARY_PATH
 
 alias ag='/runs/simrun_tav/libs/bin/ag --hidden'
 alias br="buildreport -rnl"
@@ -42,11 +43,11 @@ alias run_djinji="/runs/simrun_tav/tav_dev/jira_djinji/djinji/run_djinji.sh"
 alias tmux="TMPDIR=~/.tmux/ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/tmux"
 alias vim="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/vim"
 export EDITOR="$VISUAL"
-export LD_LIBRARY_PATH="/eda/xcelium/19.09.006/tools/lib:/eda/vmanager/VMANAGER2009/tools/lib/"
 export P4EDITOR=vim
 export PATH=$PATH:$HOME/.local/bin/:$HOME/dev/bin/
 export TERM=xterm-256color
 export VISUAL=vim
+export LD_LIBRARY_PATH=$old_LD_LIB_PAT
 
 
 
