@@ -77,7 +77,7 @@ set undofile
 set visualbell
 set wildmenu
 syntax enable
-let g:gruvbox_italic=1
+" let g:gruvbox_italic=1
 let g:gruvbox_guisp_fallback = "bg"
 let g:gruvbox_contrast_dark='high'
 let g:gruvbox_improved_warnings = '0'

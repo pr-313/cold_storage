@@ -25,7 +25,6 @@ find $1 -maxdepth $2 -user $USER -type d ! -path $1 -exec du -csh {} + | sort -h
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export old_LD_LIB_PAT=$LD_LIBRARY_PATH
 
 alias ag='/runs/simrun_tav/libs/bin/ag --hidden'
 alias br="buildreport -rnl"
@@ -38,16 +37,17 @@ alias glog="git log --graph --decorate --oneline --simplify-by-decoration"
 alias glog_full="git log --graph --decorate --oneline"
 alias lsof=/usr/sbin/lsof
 alias reset_term="env -i HOME="$HOME" bash -l && source ~/.bashrc"
-alias nvim="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/nvim"
 alias run_djinji="/runs/simrun_tav/tav_dev/jira_djinji/djinji/run_djinji.sh"
-alias tmux="TMPDIR=~/.tmux/ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/tmux"
-alias vim="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/vim"
-export EDITOR="$VISUAL"
-export P4EDITOR=vim
+alias nvim="PATH=$PATH:/runs/simrun_tav/libs/bin LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/nvim"
+alias bvim="vim --noplugin "
+# alias tmux="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/tmux"
+alias vim="PATH=$PATH:/runs/simrun_tav/libs/bin LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/vim"
+# alias vim="nvim"
+export P4EDITOR=/usr/bin/vim
 export PATH=$PATH:$HOME/.local/bin/:$HOME/dev/bin/
 export TERM=xterm-256color
-export VISUAL=vim
-export LD_LIBRARY_PATH=$old_LD_LIB_PAT
+export VISUAL=/usr/bin/vim
+export EDITOR="$VISUAL"
 
 
 
