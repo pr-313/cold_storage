@@ -5,29 +5,29 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 call plug#begin('~/.vim/plugged')
 
+" Plug 'davidhalter/jedi-vim'
 Plug 'Yggdroot/indentLine'
-Plug 'davidhalter/jedi-vim'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'ervandew/supertab'
+Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
-Plug 'mitchpaulus/autocorrect.vim'
-Plug 'gruvbox-community/gruvbox'
+" Plug 'mitchpaulus/autocorrect.vim'
 Plug 'ngemily/vim-vp4'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
-Plug 'puremourning/vimspector'
+Plug 'preservim/tagbar'
+" Plug 'puremourning/vimspector'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vhda/verilog_systemverilog.vim'
-Plug 'vim-latex/vim-latex'
-Plug 'vimwiki/vimwiki'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'preservim/tagbar'
-Plug 'xolox/vim-session'
-Plug 'xolox/vim-misc'
 Plug 'vim-airline/vim-airline'
+" Plug 'vim-latex/vim-latex'
 Plug 'vim-scripts/LargeFile'
+Plug 'vimwiki/vimwiki'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
 
 
 call plug#end()
@@ -58,7 +58,6 @@ set nobackup
 set number
 set relativenumber
 set path+=**
-set pythonthreedll=/usr/lib64/libpython3.6m.so.1.0
 set sessionoptions-=options
 set shiftwidth=4
 set showcmd
@@ -81,7 +80,7 @@ syntax enable
 let g:gruvbox_guisp_fallback = "bg"
 let g:gruvbox_contrast_dark='high'
 let g:gruvbox_improved_warnings = '0'
-let g:LargeFile=10
+let g:LargeFile=50
 set background=dark
 colorscheme gruvbox
 set hlsearch
@@ -174,7 +173,7 @@ let g:ale_linters = {
 " ----------------------- END ALE ---------------
 
 let g:tagbar_ctags_bin = '/runs/simrun_tav/libs/bin/ctags'
-let g:tagbar_file_size_limit = 10000
+let g:tagbar_file_size_limit = 10000000
 
 nnoremap <silent> <F8> :TagbarToggle<CR>
 
@@ -320,7 +319,7 @@ nmap <leader>dst <Plug>VimspectorStepOut
 " ----------------------- END VIMSPECTOR ---------------
 augroup pbharati
   autocmd!
-  " autocmd BufReadPre,BufEnter * if getfsize(@%) > 100000 | setlocal syntax="" | setlocal norelativenumber | endif
+  autocmd BufReadPre,BufEnter * if getfsize(@%) > 100000 | syntax off | setlocal norelativenumber | endif
   " autocmd BufReadPre,BufEnter * if getfsize(@%) < 1000000 | syntax on | endif
   " autocmd BufEnter * let &colorcolumn=""
   autocmd InsertLeave,WinEnter,TabEnter * let &l:foldmethod=g:oldfoldmethod

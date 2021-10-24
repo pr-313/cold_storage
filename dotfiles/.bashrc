@@ -19,6 +19,22 @@ set_p4client(){
     export $cmd_str
 }
 
+nvim(){
+    PATH=$PATH:/runs/simrun_tav/libs/bin LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/nvim $1 $2 $3 $4 $5
+}
+
+gnvim(){
+    xfce4-terminal --hide-menubar --initial-title=NeoVim --command="/runs/simrun_tav/tav_dev/.config/gnvim $1 $2 $3 $4 $5" -I=gvim
+}
+
+vim8(){
+    PATH=$PATH:/runs/simrun_tav/libs/bin LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/vim $1 $2 $3 $4 $5 $6
+}
+
+rg(){
+    /runs/simrun_tav/libs/bin/rg $1 $2 $3 $4 $5 $6
+}
+
 find_my_usage(){
 find $1 -maxdepth $2 -user $USER -type d ! -path $1 -exec du -csh {} + | sort -hr
 }
@@ -36,16 +52,16 @@ alias fugitive="vim -c :Git"
 alias glog="git log --graph --decorate --oneline --simplify-by-decoration"
 alias glog_full="git log --graph --decorate --oneline"
 alias lsof=/usr/sbin/lsof
-alias reset_term="env -i HOME="$HOME" bash -l && source ~/.bashrc"
-alias run_djinji="/runs/simrun_tav/tav_dev/jira_djinji/djinji/run_djinji.sh"
-alias nvim="PATH=$PATH:/runs/simrun_tav/libs/bin LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/nvim"
+alias reset_term="env -i HOME="$HOME" bash -l "
+alias djinji="/runs/simrun_tav/tav_dev/jira_djinji/djinji/run_djinji.sh"
+# alias nvim="PATH=$PATH:/runs/simrun_tav/libs/bin LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/nvim"
 alias bvim="vim --noplugin "
 # alias tmux="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/tmux"
-alias vim="PATH=$PATH:/runs/simrun_tav/libs/bin LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/vim"
+# alias vim="PATH=$PATH:/runs/simrun_tav/libs/bin LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/runs/simrun_tav/libs/lib/ /runs/simrun_tav/libs/bin/vim"
 # alias vim="nvim"
 export P4EDITOR=/usr/bin/vim
 export PATH=$PATH:$HOME/.local/bin/:$HOME/dev/bin/
-export TERM=xterm-256color
+export TERM=screen-256color
 export VISUAL=/usr/bin/vim
 export EDITOR="$VISUAL"
 
@@ -89,3 +105,4 @@ export EDITOR="$VISUAL"
 # fi
 # fi
 # export FZF_DEFAULT_COMMAND='ag --hidden --path-to-ignore ~/dev/resources/.ignore --nocolor -g ""'
+
