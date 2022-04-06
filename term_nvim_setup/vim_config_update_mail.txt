@@ -1,0 +1,52 @@
+---- You have been identified as a vim/nvim user ------
+
+                                                                                    Update - 03/22
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+New Additions:
+- vim_setup has been migrated to a static git based installation. Makes updates more streamlined.
+    - You can follow the repo here https://bitbucket.micron.com/bbdc/users/pbharati/repos/term_nvim_setup/browse
+- User Override Mappings - nvim will source all *.vim files in the home directory. Please make a folder in path ~/ called my_nvim and add in all the customizations you wish to use.
+
+!!!! VIM SUPPORT HAS BEEN STOPPED FROM THIS VERSION. PLEASE SWITCH TO NVIM FOR LATEST FEATURES !!!!!
+
+Changes:
+-------------NVIM---------------
+- Keybinds changed for harpoon. 
+    - ,m     -> to open harpoon menu
+    - ,a     -> to add a file to list
+    - ,<1-9> -> to directly jump to a specific file in that list.
+    - What is harpoon? https://github.com/ThePrimeagen/harpoon
+    - Particularly useful if you are working on development
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                    Update - 02/22
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+New Additions:
+-------------TERMINAL---------------
+- vsim_snap --- bash wrapper script to ensure retaining simulation compile snapshots.
+                Usage: vsim_snap -r checkin -l log_1 -x <config>            [note that there is no '-s' option]
+                This will generate a snapshots folder in the directory you run the command in. A random string will be generated and then used as the '-s' argument.
+                Snapshot will be found in this snapshots folder after compile. Use the logs to get the name of the associated snapshot.
+                Future plan, to allow the script to automatically find a relevant snapshot if possible. 
+
+- update_my_term --- one command to update all terminal functions, an alias for vim_setup
+- tb_last_modified --- one command to check which files (except any directory that starts with log*) that have been changed in the last x minutes
+                       Usage: > tb_last_modified <path_to_a_verilog_to> 60
+                       this will check for files modified in the last 60 mins
+                       very useful if you accidentally p4 sync or are facing difficulty replating someones simulation results
+
+-------------NVIM---------------
+- :LetmeWrite  ----- lets you override read-only files with forced write ":w!" not to be used with regular TB files
+
+
+Changes:
+- Bug fixes in previous .bashrc
+- Bug fixes in revsim script
+    - Script is now compatible with snapshots, and vsim_snap runs
+
+Please run "source /runs/simrun_tav/tav_dev/.config/vim_setup.sh" to update to the latest config. 
+For all future updates you can just run "update_my_term" to sync your nvim and terminal setup. 
+Working on MMJ too (but here it is necessary for you to have DRAM_TAV permissions).
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+In case of script run failures please contact @pbharati
