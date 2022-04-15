@@ -54,6 +54,7 @@ if [[ $first_time == 1 ]]; then
     cp -v ~/term_nvim_setup/vim_config_update_mail.txt ~/
     cp -svf ~/term_nvim_setup/.vimrc ~/.vimrc
     cp -svf ~/term_nvim_setup/setting.toml ~/.goneovim/
+    rm -rvf ~/.config/nvim
     cp -srvf ~/term_nvim_setup/nvim ~/.config/
     cp -svf ~/term_nvim_setup/.bashrc ~/.bashrc
     cp -svf ~/term_nvim_setup/.zshrc ~/.zshrc
@@ -86,9 +87,8 @@ else
 fi
 printf "\n\n\nINSTALLING NVIM Plugins \nType \":qa\" then Press Enter to Exit after all are complete or if stuck\n"
 echo "Press Enter to Start" && read 
-nvim +'PlugInstall' +qall
-pushd ~/.vim/plugged/telescope-fzf-native.nvim/ && make && popd
 nvim +'PlugUpdate' +qall
+pushd ~/.vim/plugged/telescope-fzf-native.nvim/ && make && popd
 if [[ $HOSTNAME == *"hyld"* ]]; then
     echo "In HYD!"
     user_exists=0

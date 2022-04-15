@@ -39,6 +39,8 @@ Plug 'puremourning/vimspector'
 Plug 'vimwiki/vimwiki'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'szw/vim-maximizer'
+Plug 'airblade/vim-gitgutter'
+
 
 call plug#end()
 filetype plugin indent on    " required
@@ -89,7 +91,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-noremap <C-m>  :MaximizerToggle<CR>
+nnoremap <silent> <leader><leader> :MaximizerToggle<CR>
 
 nnoremap <silent> <F12> :syntax on<CR> :set relativenumber<CR>
 nnoremap <silent> <F9> :syntax off<CR> :set norelativenumber<CR>
