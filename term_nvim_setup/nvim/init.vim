@@ -1,12 +1,13 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+silent! let g:plugs['LuaSnip'].commit = 'cd96f418fd08d4226370349d5f0cee168051dbd6'
+silent! let g:plugs['cmp_luasnip'].commit = 'd6f837f4e8fe48eeae288e638691b91b97d1737f'
 call plug#begin('~/.vim/plugged')
 
 Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'ThePrimeagen/harpoon'
 Plug 'chrisbra/csv.vim'
-Plug 'vim-scripts/LargeFile'
 Plug 'godlygeek/tabular'
 Plug 'gruvbox-community/gruvbox'
 Plug 'hoob3rt/lualine.nvim'
@@ -18,25 +19,27 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip', {'commit': 'd6f837f4e8fe48eeae288e638691b91b97d1737f'}
 Plug 'L3MON4D3/LuaSnip', {'branch': 'ls_snippets_preserve'}
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'elzr/vim-json'
-Plug 'mbbill/undotree'
+Plug 'junegunn/fzf', {'on' : 'BLines'}
+Plug 'junegunn/fzf.vim', {'on' : 'BLines'}
+Plug 'elzr/vim-json', {'for' : 'json'} 
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'ngemily/vim-vp4'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', {'on' : ['Telescope']}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
-Plug 'preservim/tagbar'
+Plug 'preservim/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTree']}
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'kyazdani42/nvim-tree.lua'
+Plug 'preservim/tagbar', {'on': 'TagBarToggle'}
 Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-surround'
 Plug 'tweekmonster/startuptime.vim'
 Plug 'vhda/verilog_systemverilog.vim'
-Plug 'puremourning/vimspector'
-Plug 'vimwiki/vimwiki'
+Plug 'puremourning/vimspector', {'on' : '<Plug>VimspectorContinue'}
+Plug 'vimwiki/vimwiki', {'on': ['VimwikiIndex']}
 Plug 'akinsho/toggleterm.nvim'
 Plug 'szw/vim-maximizer'
 Plug 'airblade/vim-gitgutter'
@@ -49,6 +52,7 @@ filetype plugin on
 runtime macros/matchit.vim
 " cause screw ex mode
 nnoremap Q <Nop>  
+" let g:loaded_python3_provider = 0
 " --------------------- END VUNDLE -----------------
 
 syntax enable
@@ -136,6 +140,7 @@ augroup pbharati
   autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
   autocmd BufReadPre,BufEnter,TabEnter,WinEnter *.inc set filetype=verilog_systemverilog
   autocmd VimEnter * :silent! source ~/my_nvim/*.vim
+  autocmd! User telescope.nvim :call SetupTelescope()
 augroup exit
 :silent! source ~/my_nvim/*.vim
 

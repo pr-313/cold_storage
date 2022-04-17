@@ -1,5 +1,3 @@
-silent! let g:plugs['LuaSnip'].commit = 'cd96f418fd08d4226370349d5f0cee168051dbd6'
-silent! let g:plugs['cmp_luasnip'].commit = 'd6f837f4e8fe48eeae288e638691b91b97d1737f'
 lua << EOF
 local ls = require("luasnip")
 -- some shorthands...

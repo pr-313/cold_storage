@@ -8,6 +8,7 @@ vnoremap <silent> <Leader>G y:BLines <C-r>"<CR>
 " nnoremap <silent> <Leader>f y:Rg<CR> 
 
 " USING TELESCOPE
+function! SetupTelescope()
 lua << EOF
 require('telescope').setup{
   defaults = {
@@ -19,6 +20,9 @@ require('telescope').setup{
     },
     live_grep = {
       sorter=fzf_native
+    },
+    oldfiles = {
+   --    only_cwd = true, 
     }
   },
   extensions = {
@@ -39,6 +43,7 @@ require('telescope').load_extension('fzf')
 require("telescope").load_extension("git_worktree")
 
 EOF
+endfunction
 
 nnoremap <silent> <Leader>l <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <silent> <Leader>f <cmd>Telescope live_grep<cr>
