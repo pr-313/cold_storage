@@ -1,6 +1,7 @@
 " set autochdir
 " set foldenable
 set autoread 
+set laststatus=3
 set backspace=indent,eol,start
 set backupdir=/dev/null
 set conceallevel=1
@@ -12,7 +13,6 @@ set ignorecase
 set incsearch
 set keymodel+=startsel
 set keymodel+=stopsel 
-set laststatus=2
 set mouse=a
 set nobackup
 set noerrorbells

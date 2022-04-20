@@ -68,7 +68,6 @@ if [[ $first_time == 1 ]]; then
     echo "################################################################################################"
     echo "Dowloading Plugins and Plugin Managers"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    source ~/.bashrc
     echo "Choose [y] whenever prompted"
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -80,14 +79,16 @@ if [[ $first_time == 1 ]]; then
     ~/.tmux/plugins/tundle/scripts/install_plugins.sh
     PATH=$PATH:/runs/simrun_tav/libs/bin npm config set strict-ssl false
     python3 -m pip install pynvim > /dev/null 2>&1 &
+    source ~/.bashrc
 else
+    source ~/.bashrc
     omz update
     pushd ~/term_nvim_setup && git pull origin master && popd
     pushd ~/.fzf && git pull && popd
 fi
 printf "\n\n\nINSTALLING NVIM Plugins \nType \":qa\" then Press Enter to Exit after all are complete or if stuck\n"
 echo "Press Enter to Start" && read 
-nvim +'PlugUpdate' +qall
+nvim -S ~/term_nvim_setup/nvim_version_lock.vim
 pushd ~/.vim/plugged/telescope-fzf-native.nvim/ && make && popd
 if [[ $HOSTNAME == *"hyld"* ]]; then
     echo "In HYD!"

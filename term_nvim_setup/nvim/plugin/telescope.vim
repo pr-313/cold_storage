@@ -8,7 +8,6 @@ vnoremap <silent> <Leader>G y:BLines <C-r>"<CR>
 " nnoremap <silent> <Leader>f y:Rg<CR> 
 
 " USING TELESCOPE
-function! SetupTelescope()
 lua << EOF
 require('telescope').setup{
   defaults = {
@@ -43,16 +42,17 @@ require('telescope').load_extension('fzf')
 require("telescope").load_extension("git_worktree")
 
 EOF
-endfunction
 
+command! SearchString :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})
+command! VSearchString :lua require('telescope.builtin').grep_string({search = vim.fn.getreg('"')})
 nnoremap <silent> <Leader>l <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <silent> <Leader>f <cmd>Telescope live_grep<cr>
 nnoremap <silent> <C-b>     <cmd>Telescope buffers<cr>
 nnoremap <silent> <C-F>     <cmd>Telescope find_files<cr>
 nnoremap <silent> te        <cmd>Telescope<cr>
 nnoremap <silent> <Leader>h <cmd>Telescope oldfiles<cr>
-nnoremap <silent> <leader>F :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
-vnoremap <silent> <leader>f y:lua require('telescope.builtin').grep_string({search = vim.fn.getreg('"')})<CR>
+nnoremap <silent> <leader>F :SearchString<CR>
+vnoremap <silent> <leader>f y:VSearchString<CR>
 
 nnoremap <silent> <Leader>gwt :lua require('telescope').extensions.git_worktree.git_worktrees()<cr>
                                 " -- <Enter> - switches to that worktree
