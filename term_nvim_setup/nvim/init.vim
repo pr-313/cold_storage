@@ -4,10 +4,11 @@ silent! let g:plugs['LuaSnip'].commit = 'cd96f418fd08d4226370349d5f0cee168051dbd
 silent! let g:plugs['cmp_luasnip'].commit = 'd6f837f4e8fe48eeae288e638691b91b97d1737f'
 call plug#begin('~/.vim/plugged')
 
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'ThePrimeagen/harpoon'
-Plug 'chrisbra/csv.vim'
+Plug 'chrisbra/csv.vim', {'for' : 'csv'}
 Plug 'godlygeek/tabular'
 Plug 'gruvbox-community/gruvbox'
 Plug 'hoob3rt/lualine.nvim'
@@ -27,13 +28,14 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'ngemily/vim-vp4'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'nvim-telescope/telescope.nvim', {'on' : ['Telescope']}
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/playground', {'on' : 'TSPlaygroundToggle'}
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTree']}
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTree']}
 " Plug 'kyazdani42/nvim-tree.lua'
-Plug 'preservim/tagbar', {'on': 'TagBarToggle'}
+Plug 'preservim/tagbar', {'on': 'TagbarToggle'}
 Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-surround'
 Plug 'tweekmonster/startuptime.vim'
@@ -142,7 +144,8 @@ augroup pbharati
   autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
   autocmd BufReadPre,BufEnter,TabEnter,WinEnter *.inc set filetype=verilog_systemverilog
   autocmd VimEnter * :silent! source ~/my_nvim/*.vim
-  autocmd! User telescope.nvim :call SetupTelescope()
+  autocmd User telescope.nvim :call SetupTelescope()
+  autocmd User playground :call LoadTreeSitter()
 augroup exit
 :silent! source ~/my_nvim/*.vim
 
