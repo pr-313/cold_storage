@@ -52,7 +52,9 @@ filetype plugin on
 runtime macros/matchit.vim
 " cause screw ex mode
 nnoremap Q <Nop>  
-" let g:loaded_python3_provider = 0
+let g:loaded_python3_provider = 0
+let g:loaded_ruby_provider = 0
+let g:loaded_perl_provider = 0
 " --------------------- END VUNDLE -----------------
 
 syntax enable
