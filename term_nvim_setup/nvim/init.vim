@@ -146,6 +146,7 @@ augroup pbharati
   autocmd VimEnter * :silent! source ~/my_nvim/*.vim
   autocmd User telescope.nvim :call SetupTelescope()
   autocmd User playground :call LoadTreeSitter()
+  autocmd FileType git setlocal set foldmethod=syntax
 augroup exit
 :silent! source ~/my_nvim/*.vim
 
