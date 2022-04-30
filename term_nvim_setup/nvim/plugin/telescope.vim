@@ -48,7 +48,7 @@ command! VSearchString :lua require('telescope.builtin').grep_string({search = v
 nnoremap <silent> <Leader>l <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <silent> <Leader>f <cmd>Telescope live_grep<cr>
 nnoremap <silent> <C-b>     <cmd>Telescope buffers<cr>
-nnoremap <silent> <C-p>     <cmd>Telescope find_files<cr>
+nnoremap <silent> <C-f>     <cmd>Telescope find_files<cr>
 nnoremap <silent> te        <cmd>Telescope<cr>
 nnoremap <silent> <Leader>h <cmd>Telescope oldfiles<cr>
 nnoremap <silent> <leader>F :SearchString<CR>
