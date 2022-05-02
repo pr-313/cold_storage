@@ -79,13 +79,12 @@ if [[ $first_time == 1 ]]; then
     ~/.tmux/plugins/tundle/scripts/install_plugins.sh
     PATH=$PATH:/runs/simrun_tav/libs/bin npm config set strict-ssl false
     python3 -m pip install pynvim > /dev/null 2>&1 &
-    source ~/.bashrc
 else
-    source ~/.bashrc
     omz update
     pushd ~/term_nvim_setup && git pull origin master && popd
     pushd ~/.fzf && git pull && popd
 fi
+source ~/.bashrc
 printf "\n\n\nINSTALLING NVIM Plugins \nType \":qa\" then Press Enter to Exit after all are complete or if stuck\n"
 echo "Press Enter to Start" && read 
 nvim -S ~/term_nvim_setup/nvim_version_lock.vim

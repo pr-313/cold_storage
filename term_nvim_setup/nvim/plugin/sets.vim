@@ -1,11 +1,10 @@
 " set autochdir
 " set foldenable
 set autoread 
-set laststatus=3
 set backspace=indent,eol,start
 set backupdir=/dev/null
 set conceallevel=1
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 set expandtab
 set foldmethod=manual
 set guioptions-=L

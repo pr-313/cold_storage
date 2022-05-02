@@ -27,8 +27,8 @@ if [ -n "`echo $ZSH_VERSION`" ]; then
     # source ~/.zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /runs/simrun_tav/libs/zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /runs/simrun_tav/libs/zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    long='%(?.%F{green}√.%F{red}?%?)%f %B%m: %F{240}%~%f%b %# '
-    short='%(?.%F{green}√.%F{red}?%?)%f %B%m: %F{240}%1~%f%b %# '
+    long='%(?.%F{green}√.%F{red}?%?)%f %B%m: %F{240}%~ %{$fg_bold[blue]%}$(git_current_branch) %f%b%# '
+    short='%(?.%F{green}√.%F{red}?%?)%f %B%m: %F{240}%1~ %{$fg_bold[blue]%}$(git_current_branch) %f%b%# '
     alias cmdline_long='export PS1=$long'
     alias cmdline_short='export PS1=$short'
     export PS1=$long

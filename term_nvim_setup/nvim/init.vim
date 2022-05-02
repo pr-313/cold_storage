@@ -20,12 +20,14 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip', {'commit': 'd6f837f4e8fe48eeae288e638691b91b97d1737f'}
 Plug 'L3MON4D3/LuaSnip', {'branch': 'ls_snippets_preserve'}
+Plug 'rlane/pounce.nvim'
 Plug 'junegunn/fzf', {'on' : 'BLines'}
 Plug 'junegunn/fzf.vim', {'on' : 'BLines'}
 Plug 'elzr/vim-json', {'for' : 'json'} 
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'ngemily/vim-vp4'
+Plug 'rafamadriz/friendly-snippets'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope.nvim'
@@ -55,8 +57,8 @@ runtime macros/matchit.vim
 " cause screw ex mode
 nnoremap Q <Nop>  
 let g:loaded_python3_provider = 0
-let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
+let g:loaded_ruby_provider = 0
 " --------------------- END VUNDLE -----------------
 
 syntax enable
@@ -84,8 +86,9 @@ nnoremap  <silent>  <Leader>w          :w<cr>
 nnoremap  <silent>  Y                  y$
 nnoremap  <silent>  <S-Tab>            gt
 nnoremap  <silent>  tq                 :copen<cr>
-nnoremap  <silent>  <M-n>              :cn<cr>
-nnoremap  <silent>  <M-b>              :cp<cr>
+nnoremap  <silent>  <M-n>              :cn<cr>zz
+nnoremap  <silent>  <M-b>              :cp<cr>zz
+nnoremap  <silent>  <M-s>              :noh<cr>
 " nnoremap  <silent>  <M-n>              :lnext<cr>
 " nnoremap  <silent>  <M-p>              :lprevious<cr>
 nnoremap  <silent>  n                  nzzzv
@@ -144,9 +147,9 @@ augroup pbharati
   autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
   autocmd BufReadPre,BufEnter,TabEnter,WinEnter *.inc set filetype=verilog_systemverilog
   autocmd VimEnter * :silent! source ~/my_nvim/*.vim
+  autocmd FileType git :silent! setlocal foldmethod=syntax
   autocmd User telescope.nvim :call SetupTelescope()
   autocmd User playground :call LoadTreeSitter()
-  autocmd FileType git setlocal foldmethod=syntax
 augroup exit
 :silent! source ~/my_nvim/*.vim
 

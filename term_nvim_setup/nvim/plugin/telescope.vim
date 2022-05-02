@@ -15,12 +15,47 @@ require('telescope').setup{
   },
   pickers = {
     find_files = {
-      hidden = true
+      hidden = true,
+      sorter=fzf_native,
+      layout_strategy='flex',
+      layout_config={ width = 0.8,
+                      flex = { flip_columns = 160},
+                      vertical = { preview_height = 0.8},
+                      }
     },
     live_grep = {
-      sorter=fzf_native
+      sorter=fzf_native,
+      layout_strategy='flex',
+      layout_config={ width = 0.8,
+                      flex = { flip_columns = 160},
+                      vertical = { preview_height = 0.8},
+                      }
     },
     oldfiles = {
+      sorter=fzf_native,
+      layout_strategy='flex',
+      layout_config={ width = 0.8,
+                      flex = { flip_columns = 160},
+                      vertical = { preview_height = 0.8},
+                      }
+   --    only_cwd = true, 
+    },
+    grep_string = {
+      sorter=fzf_native,
+      layout_strategy='flex',
+      layout_config={ width = 0.8,
+                      flex = { flip_columns = 160},
+                      vertical = { preview_height = 0.8},
+                      }
+   --    only_cwd = true, 
+    },
+    current_buffer_fuzzy_find = {
+      sorter=fzf_native,
+      layout_strategy='flex',
+      layout_config={ width = 0.8,
+                      flex = { flip_columns = 160},
+                      vertical = { preview_height = 0.8},
+                      }
    --    only_cwd = true, 
     }
   },
@@ -39,6 +74,7 @@ require('telescope').setup{
   }
 }
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('harpoon')
 require("telescope").load_extension("git_worktree")
 
 EOF
@@ -48,7 +84,7 @@ command! VSearchString :lua require('telescope.builtin').grep_string({search = v
 nnoremap <silent> <Leader>l <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <silent> <Leader>f <cmd>Telescope live_grep<cr>
 nnoremap <silent> <C-b>     <cmd>Telescope buffers<cr>
-nnoremap <silent> <C-f>     <cmd>Telescope find_files<cr>
+nnoremap <silent> <C-F>     <cmd>Telescope find_files<cr>
 nnoremap <silent> te        <cmd>Telescope<cr>
 nnoremap <silent> <Leader>h <cmd>Telescope oldfiles<cr>
 nnoremap <silent> <leader>F :SearchString<CR>
