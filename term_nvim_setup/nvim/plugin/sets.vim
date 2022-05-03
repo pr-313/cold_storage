@@ -7,7 +7,7 @@ set conceallevel=1
 " set clipboard=unnamedplus
 set expandtab
 set foldmethod=manual
-set guioptions-=L
+" set guioptions-=L
 set ignorecase
 set incsearch
 set keymodel+=startsel
@@ -43,9 +43,17 @@ set hidden
 set shell=/bin/bash\ --login
 set background=dark
 set cpoptions+=W    
-set guifont=MonospaceRegular:h10.5
 set updatetime=1000
 if exists("g:gonvim_running")
     set title
     set titlestring=
+    set guifont=Monaco:h12
+endif
+if exists("g:neovide")
+    set title
+    set titlestring=
+    set guifont=Monaco:h12
+    let g:neovide_refresh_rate=140
+    let g:neovide_cursor_animation_length=0.005
+    let g:neovide_cursor_trail_length=0.1
 endif
