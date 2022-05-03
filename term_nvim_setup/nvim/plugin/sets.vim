@@ -49,13 +49,9 @@ if exists("g:gonvim_running")
     set titlestring=
     set guifont=Monaco:h12
 endif
-if exists("g:neovide")
+if has('gui_vimr')
     set title
     set titlestring=
     set guifont=Monaco:h12
-    let g:neovide_refresh_rate=60
-    let g:neovide_cursor_animation_length=0.005
-    let g:neovide_cursor_trail_length=0.1
-    " let g:neovide_touch_deadzone=30
     set wrap
 endif
