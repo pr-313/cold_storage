@@ -47,11 +47,11 @@ set updatetime=1000
 if exists("g:gonvim_running")
     set title
     set titlestring=
-    set guifont=Monaco:h12
+    set guifont=Monaco:h11
 endif
 if has('gui_vimr')
     set title
     set titlestring=
-    set guifont=Monaco:h12
+    set guifont=Monaco:h11
     set wrap
 endif
