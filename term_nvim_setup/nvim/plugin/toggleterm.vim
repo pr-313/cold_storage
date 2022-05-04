@@ -19,7 +19,7 @@ require("toggleterm").setup{
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
   terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
   persist_size = true,
-  direction = 'horizontal', --'vertical' | 'horizontal' | 'window' | 'float',
+  direction = 'float', --'vertical' | 'horizontal' | 'window' | 'float',
   close_on_exit = true, -- close the terminal window when the process exits
   shell = '/bin/zsh', -- change the default shell
   -- This field is only relevant if direction is set to 'float'
@@ -29,9 +29,9 @@ require("toggleterm").setup{
     -- the 'curved' border is a custom border type
     -- not natively supported but implemented in this plugin.
     border = 'single', -- | 'double' | 'shadow' | 'curved' | ... other options supported by win open
-    width = 40,
-    height = 20,
-    winblend = 3,
+    width = 200,
+    height = 50,
+    winblend = 5,
     highlights = {
       border = "Normal",
       background = "Normal",
